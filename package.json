@@ -1,0 +1,30 @@
+{
+  "name": "share2predictbgl-bridge",
+  "version": "0.1.5",
+  "description": "Fetches data from Dexcom's webservice and puts it in PredictBGL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon Carter",
+  "license": "GPLv3",
+  "dependencies": {
+    "request": "~2.53.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/datamystic/share2predictbgl-bridge.git"
+  },
+  "engines": {
+    "node": "~0.10.0"
+  },
+  "keywords": [
+    "dexcom",
+    "bridge",
+    "predictbgl",
+    "cgm"
+  ],
+  "bugs": {
+    "url": "https://github.com/datamystic/share2predictbgl-bridge/issues"
+  }
+}
