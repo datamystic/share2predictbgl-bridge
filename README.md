@@ -8,7 +8,6 @@ share2predictbgl-bridge
 [releases]: https://github.com/datamystic/share2predictbgl-bridge/releases
 [heroku-img]: https://www.herokucdn.com/deploy/button.png
 [heroku-url]: https://heroku.com/deploy
-[c-r-m]: https://github.com/nightscount/cgm-remote-monitor
 [wiki]: https://github.com/datamystic/share2predictbgl-bridge/wiki
 [dexcom-eula]: http://www.dexcom.com/node/5421
 [azure-environment]: https://github.com/projectkudu/kudu/wiki/Azure-runtime-environment
@@ -17,8 +16,8 @@ share2predictbgl-bridge
 The Share to PredictBGL bridge copies your CGM data from Dexcom web services to
 PredictBGL Apps/ManageBGL website.  The bridge runs as `node index.js` and will loop
 forever, periodically querying Dexcom's Share web services for new CGM data.
-The bridge relays any new data to the PredictBGL website
-([cgm-remote-monitor][c-r-m]) via the REST API.  The website then syncs the
+The bridge relays any new data to the PredictBGL website via the REST API.  
+The website then syncs the
 data live to all connected devices.
 
 ### Prerequisites
@@ -36,7 +35,7 @@ see the [wiki][wiki] for current install information.
 
 To start setup, first install node.js on your computer.
 
-In a new folder, run
+In a new folder, run:
   git clone https://github.com/datamystic/share2predictbgl-bridge.git
 
 To install pre-requisities, run  
