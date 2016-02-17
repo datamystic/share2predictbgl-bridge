@@ -1,6 +1,7 @@
 /**
  * Author: Simon Carter
  * Thanks to Ben West, Scott Hanselman
+ * http://www.hanselman.com/blog/BridgingDexcomShareCGMReceiversAndNightscout.aspx
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -122,10 +123,10 @@ function fetch (opts, then) {
 function do_everything (opts, then) {
   var login_opts = opts.login;
   var fetch_opts = opts.fetch;
-  authorize(login_opts, function (err, res, body) {
+  authorize(login_opts, function (err, response, body) {
 
     fetch_opts.sessionID = body;
-    fetch(fetch_opts, function (err, res, glucose) {
+    fetch(fetch_opts, function (err, response, glucose) {
       then(err, glucose);
 
     });
@@ -204,8 +205,12 @@ function engine (opts) {
         fetch_opts.maxCount = opts.firstFetchCount;
       }
       fetch_opts.sessionID = my.sessionID;
-      fetch(fetch_opts, function (err, res, glucose) {
-        if (res.statusCode < 400) {
+      fetch(fetch_opts, function (err, response, glucose) {
+
+		if (err) {
+			console.log('** No Network connection for Dexcom Share', err);
+		}
+		else if (response.statusCode < 400) {
           to_predictbgl(glucose);
         } else {
           my.sessionID = null;
@@ -220,15 +225,21 @@ function engine (opts) {
 
   function refresh_token ( ) {
     console.log('Fetching new token');
-    authorize(opts.login, function (err, res, body) {
-      if (!err && body && res.statusCode == 200) {
+    authorize(opts.login, function (err, response, body) {
+      if (!err && body && response.statusCode == 200) {
         my.sessionID = body;
         failures = 0;
         my( );
       } else {
         failures++;
-        console.log("Error refreshing token", err, res.statusCode, body);
-        if (failures >= opts.maxFailures) {
+		
+		if (err) {
+			console.log("** Error refreshing token", err);
+		} else {
+			console.log("Error refreshing token", err, response.statusCode, body);
+		}
+		
+		if (failures >= opts.maxFailures) {
           throw "Too many login failures, check DEXCOM_ACCOUNT_NAME and DEXCOM_PASSWORD";
         }
       }
@@ -251,7 +262,12 @@ function engine (opts) {
         
 		// Send data to PredictBGL
         report_to_predictbgl(pb_config, function (err, response, body) {
-          console.log("predictbgl upload", 'error', err, 'status', response.statusCode, body);
+		
+		  if (!err && body && response.statusCode == 200) {
+			console.log("predictbgl upload ok", body);
+		  } else {
+			console.log("** predictbgl upload problem", 'error', err);
+		  }
 
         });
       }
@@ -313,7 +329,7 @@ if (!module.parent) {
   , fetch: fetch_config
   , predictbgl: pb_config
   , maxFailures: readENV('maxFailures', 3)
-  , firstFetchCount: readENV('firstFetchCount', 3)
+  , firstFetchCount: readENV('firstFetchCount', 300)
   };
   switch (args[0]) {
     case 'login':
@@ -338,7 +354,15 @@ if (!module.parent) {
             pb_config.entries = entries;
             // Send data to predictbgl.
             report_to_predictbgl(pb_config, function (err, response, body) {
-              console.log("predictbgl upload", 'error', err, 'status', response.statusCode, body);
+
+				if (err)
+				{
+					console.log('** No Network connection', err);
+				}
+				else
+				{
+					console.log("predictbgl upload", 'error', err, 'status', response.statusCode, body);
+				}
 
             });
           }
