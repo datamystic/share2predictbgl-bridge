@@ -329,7 +329,7 @@ if (!module.parent) {
   , fetch: fetch_config
   , predictbgl: pb_config
   , maxFailures: readENV('maxFailures', 3)
-  , firstFetchCount: readENV('firstFetchCount', 300)
+  , firstFetchCount: readENV('firstFetchCount', 30)
   };
   switch (args[0]) {
     case 'login':

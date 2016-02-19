@@ -12,9 +12,12 @@ share2predictbgl-bridge
 [dexcom-eula]: http://www.dexcom.com/node/5421
 [azure-environment]: https://github.com/projectkudu/kudu/wiki/Azure-runtime-environment
 [blog-post]: http://www.hanselman.com/blog/BridgingDexcomShareCGMReceiversAndNightscout.aspx
+[signup]: https://www.managebgl.com/
+[diabetes-api]: https://www.managebgl.com/api/api-REST.html
 
 The Share to PredictBGL bridge copies your CGM data from Dexcom web services to
-PredictBGL Apps/ManageBGL website.  The bridge runs as `node index.js` and will loop
+PredictBGL Apps/ManageBGL website via the [PredictBGL Diabetes API][diabetes-api].
+The bridge runs as `node index.js` and will loop
 forever, periodically querying Dexcom's Share web services for new CGM data.
 The bridge relays any new data to the PredictBGL website via the REST API.  
 The website then syncs the
@@ -26,14 +29,14 @@ data live to all connected devices.
   successfully uploading data to Dexcom.  You must be able to see the Dexcom
   data in the Dexcom Follow app for the bridge to work.
 * Your Dexcom Sharer username and password
-* A ManageBGL account
+* A ManageBGL account, signup free at [PredictBGL][signup]
 
 ### Install
 
 The Share to PredictBGL bridge is supported on both Azure and Heroku.  Please
 see the [wiki][wiki] for current install information.
 
-To start setup, first install node.js on your computer.
+For normal setup, first install node.js on your computer.
 
 In a new folder, run:
   git clone https://github.com/datamystic/share2predictbgl-bridge.git
