@@ -43,10 +43,12 @@ To install pre-requisities, run
 
 To setup the bridge for your account, run these (one per line):  
   set API_SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  
+  
   set DEXCOM_ACCOUNT_NAME=xxxxx
+  
   set DEXCOM_PASSWORD=xxxxx
 
-[Get ManageBGL's API secret][[your-secret]]
+[Get ManageBGL's API secret][your-secret]
 
 To start things rolling, run:
   node index.js
