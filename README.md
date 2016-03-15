@@ -3,17 +3,14 @@ share2predictbgl-bridge
 
 [Releases][releases]
 
-[![Deploy to Heroku][heroku-img]][heroku-url]
-
 [releases]: https://github.com/datamystic/share2predictbgl-bridge/releases
-[heroku-img]: https://www.herokucdn.com/deploy/button.png
-[heroku-url]: https://heroku.com/deploy
 [wiki]: https://github.com/datamystic/share2predictbgl-bridge/wiki
 [dexcom-eula]: http://www.dexcom.com/node/5421
 [azure-environment]: https://github.com/projectkudu/kudu/wiki/Azure-runtime-environment
 [blog-post]: http://www.hanselman.com/blog/BridgingDexcomShareCGMReceiversAndNightscout.aspx
 [signup]: https://www.managebgl.com/
 [diabetes-api]: https://www.managebgl.com/api/api-REST.html
+[your-secret]: https://www.managebgl.com/settings-sharing-third.html
 
 The Share to PredictBGL bridge copies your CGM data from Dexcom web services to
 PredictBGL Apps/ManageBGL website via the [PredictBGL Diabetes API][diabetes-api].
@@ -44,10 +41,12 @@ In a new folder, run:
 To install pre-requisities, run  
   npm install request
 
-To setup the bridge for your account:  
-  set API-SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  (from ...https://www.managebgl.com/settings-sharing-third.html)
+To setup the bridge for your account, run these (one per line):  
+  set API_SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  
   set DEXCOM_ACCOUNT_NAME=xxxxx
   set DEXCOM_PASSWORD=xxxxx
+
+[Get ManageBGL's API secret][[your-secret]]
 
 To start things rolling, run:
   node index.js
