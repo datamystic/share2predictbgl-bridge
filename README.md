@@ -11,6 +11,8 @@ share2predictbgl-bridge
 [signup]: https://www.managebgl.com/
 [diabetes-api]: https://www.managebgl.com/api/api-REST.html
 [your-secret]: https://www.managebgl.com/settings-sharing-third.html
+[ios]: http://itunes.apple.com/app/id980437930
+[android]: https://play.google.com/store/apps/details?id=com.managebgl.predictbgl2
 
 The Share to PredictBGL bridge copies your CGM data from Dexcom web services to
 PredictBGL Apps/ManageBGL website via the [PredictBGL Diabetes API][diabetes-api].
@@ -26,9 +28,10 @@ data live to all connected devices, such as the PredictBGL iOS and Android Apps.
   successfully uploading data to Dexcom.  You must be able to see the Dexcom
   data in the Dexcom Follow app for the bridge to work.
 * Your Dexcom Sharer username and password
-* A ManageBGL account, signup free at [PredictBGL][signup]
+* A ManageBGL account, signup free at [ManageBGL][signup]
+* [iOS][iOS] or [Android][Android] Apps
 
-### Install
+### Install Node and Node Package Manager (npm) - Mac/Unix
 
 For normal setup, first install node.js on your computer.
 
@@ -40,13 +43,11 @@ sudo apt-get install nodejs
 
 sudo apt-get install npm
 
-npm install request
+### Install Node and Node Package Manager (npm) - Windows
 
+Go to https://nodejs.org/en/download/
 
-Under Windows, go to https://nodejs.org/en/download/
-
-
-
+### Install libraries
 
 In a new folder, run:
   git clone https://github.com/datamystic/share2predictbgl-bridge.git
@@ -56,20 +57,18 @@ To install pre-requisities, run
 
 To setup the bridge for your account, run these (one per line):  
   set API_SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  
+  [Get ManageBGL's API secret][your-secret] 
   
   set DEXCOM_ACCOUNT_NAME=xxxxx
   
   set DEXCOM_PASSWORD=xxxxx
 
-Note: if you use Mac/Linux, change set to EXPORT ie
+Note: if you use Mac/Linux, change SET to EXPORT ie
   export API_SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  
   
   export DEXCOM_ACCOUNT_NAME=xxxxx
   
   export DEXCOM_PASSWORD=xxxxx
-
-
-[Get ManageBGL's API secret][your-secret]
 
 To start things rolling, run:
   node index.js
