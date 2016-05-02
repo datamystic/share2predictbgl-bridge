@@ -18,7 +18,7 @@ The bridge runs as `node index.js` and will loop
 forever, periodically querying Dexcom's Share web services for new CGM data.
 The bridge relays any new data to the PredictBGL website via the REST API.  
 The website then syncs the
-data live to all connected devices.
+data live to all connected devices, such as the PredictBGL iOS and Android Apps.
 
 ### Prerequisites
 
@@ -30,10 +30,23 @@ data live to all connected devices.
 
 ### Install
 
-The Share to PredictBGL bridge is supported on both Azure and Heroku.  Please
-see the [wiki][wiki] for current install information.
-
 For normal setup, first install node.js on your computer.
+
+Under Unix:
+
+sudo apt-get update
+
+sudo apt-get install nodejs
+
+sudo apt-get install npm
+
+npm install request
+
+
+Under Windows, go to https://nodejs.org/en/download/
+
+
+
 
 In a new folder, run:
   git clone https://github.com/datamystic/share2predictbgl-bridge.git
@@ -47,6 +60,14 @@ To setup the bridge for your account, run these (one per line):
   set DEXCOM_ACCOUNT_NAME=xxxxx
   
   set DEXCOM_PASSWORD=xxxxx
+
+Note: if you use Mac/Linux, change set to EXPORT ie
+  export API_SECRET=xxxx-xxxxxxxxxxxxxxxxxxxxxx  
+  
+  export DEXCOM_ACCOUNT_NAME=xxxxx
+  
+  export DEXCOM_PASSWORD=xxxxx
+
 
 [Get ManageBGL's API secret][your-secret]
 
@@ -68,9 +89,9 @@ To start things rolling, run:
   consecutively failed login attempts with a clear error message in the logs.
 * `SHARE_INTERVAL` (150000) - The time to wait between each update (default is 2.5 minutes in milliseconds)
 
-#### Azure Specific
+#### Alternative
 
-* It is highly recommended that you set the `API_SECRET`, `DEXCOM_ACCOUNT_NAME` and `DEXCOM_PASSWORD` in **Connection Strings**.
+* If this all sounds too complicated, get a ManageBGL.com account and it is all done for you.
 
 ### More information
 
